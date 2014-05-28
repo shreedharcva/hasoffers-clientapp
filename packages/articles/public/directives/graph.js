@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('mean').directive('clientGraph', function () {
     return {
         restrict: 'A',

@@ -1,10 +1,9 @@
 <section data-ng-controller="ArticlesController" data-ng-init="find()">
     <ul class="articles unstyled">
-        <li data-ng-repeat="article in articles">
-            <span>{{article.created | date:'medium'}}</span> /
-            <span>{{article.user.name}}</span>
-            <h2>
-                <a data-ng-href="#!/articles/{{article._id}}">{{article.title}}</a>
+        <li class= "col-md-4" data-ng-repeat="article in articles">
+
+            <div class="inner">
+
                 <span data-ng-if="hasAuthorization(article)">
                     <a class="btn" href="/#!/articles/{{article._id}}/edit">
                         <i class="glyphicon glyphicon-edit"></i>
@@ -13,8 +12,35 @@
                         <i class="glyphicon glyphicon-trash"></i>
                     </a>
                 </span>
-            </h2>
-            <div>{{article.content}}</div>
+
+                <figure class="article-avatar">
+                    <img data-ng-src="{{article.avatar != null && article.avatar || 'https://s3.amazonaws.com/uifaces/faces/twitter/sachagreif/128.jpg'}}"
+                         err-src="https://s3.amazonaws.com/uifaces/faces/twitter/sachagreif/128.jpg"
+                    />
+                </figure>
+
+                <h2>
+                    {{article.name}}
+                </h2>
+
+                <h3>{{article.occupation}}</h3>
+
+                <div class="article-content">
+                    <aside class="article-meta">
+                        <ul>
+                            <li ng-repeat="(key, value) in article.meta">
+                                <strong class="meta-{{key}}">{{value.toLocaleString()}}</strong>
+                                <div class="description" ng-show="! $last">{{key}}</div>
+                            </li>
+                        </ul>
+                    </aside>
+                    <aside class="article-graph">
+                        <div class="client-graph">{{article.graph.toString()}}</div>
+                        <div class="conversion-info">conversions 4/12 - 4/30</div>
+                    </aside>
+                </div>
+
+            </div>
         </li>
     </ul>
     <h1 data-ng-hide="!articles || articles.length">No articles yet. <br> Why don't you <a href="/#!/articles/create">Create One</a>?</h1>

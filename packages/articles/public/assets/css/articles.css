@@ -1,6 +1,90 @@
+body {
+    background: #f0f0f0 !important;
+}
+
 h1 {
 	text-align: center
 }
-ul.articles li:not(:last-child) {
-	border-bottom: 1px solid #ccc
+ul.articles {
+    padding: 0;
 }
+ul.articles li {
+    list-style-type: none;
+}
+ul.articles li h2 {
+    font-size: 23px;
+    line-height: 1em;
+    margin: 0;
+}
+ul.articles li h3 {
+    font-size: 16px;
+    color: #aaa;
+    margin-top: 7px;
+}
+ul.articles li .inner {
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    height: auto;
+    margin-bottom: 1em;
+    min-height: 18em;
+    padding: 1em 2em;
+}
+ul.articles li .article-content {
+    margin-top: 2.7em;
+}
+ul.articles li .article-avatar {
+    float: left;
+    margin-right: 0.5em;
+}
+ul.articles li .article-avatar img {
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+ul.articles li .article-meta {
+    float: right;
+    overflow: hidden;
+}
+ul.articles li .article-graph {
+    display: inline-block;
+}
+ul.articles li .article-graph .conversion-info {
+    color: #ccc;
+}
+ul.articles li .article-meta strong {
+    font-size: 16px;
+}
+ul.articles li .article-meta strong.meta-conversions {
+    color: #f0ad4e;
+}
+ul.articles li .article-meta strong.meta-impressions {
+    color: #428bca;
+}
+ul.articles li .article-meta strong.meta-total {
+    font-size: 20px;
+    color: #5cb85c;
+}
+ul.articles li .article-meta .description {
+    font-size: 0.8em;
+    font-style: italic;
+    color: #ccc;
+}
+ul.articles li .article-meta ul {
+    padding: 0;
+}
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {  }
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    ul.articles li .article-avatar img {
+        max-height: 4.5em;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }

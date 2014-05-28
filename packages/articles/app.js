@@ -24,7 +24,7 @@ Articles.register(function(app, auth, database) {
     });
     Articles.menus.add({
         'roles': ['authenticated'],
-        'title': 'Create New Article',
+        'title': 'New Client',
         'link': 'create article'
     });
 

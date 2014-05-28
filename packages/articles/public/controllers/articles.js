@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles',
-    function($scope, $stateParams, $location, Global, Articles) {
+angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams', '$location', '$fileUploader', 'Global', 'Articles',
+    function($scope, $stateParams, $location, $fileUploader, Global, Articles) {
         $scope.global = Global;
 
         $scope.hasAuthorization = function(article) {
@@ -11,15 +11,15 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
 
         $scope.create = function() {
             var article = new Articles({
-                title: this.title,
-                content: this.content
+                name: this.name,
+                occupation: this.occupation
             });
             article.$save(function(response) {
                 $location.path('articles/' + response._id);
             });
 
-            this.title = '';
-            this.content = '';
+            this.name = '';
+            this.occupation = '';
         };
 
         $scope.remove = function(article) {
@@ -54,6 +54,8 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
             Articles.query(function(articles) {
                 $scope.articles = articles;
             });
+
+            $scope.renderGraph();
         };
 
         $scope.findOne = function() {
@@ -62,6 +64,24 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
             }, function(article) {
                 $scope.article = article;
             });
+
+            $scope.renderGraph();
         };
+
+        // create a uploader with options
+        $scope.uploader = $fileUploader.create({
+            scope: $scope,                          // to automatically update the html. Default: $rootScope
+            url: 'upload.php',
+            formData: [
+                { key: 'value' }
+            ],
+            filters: [
+                function (item) {                    // first user filter
+                    console.info('filter1');
+                    return true;
+                }
+            ]
+        });
+
     }
 ]);

@@ -1,14 +1,26 @@
 <section data-ng-controller="ArticlesController" data-ng-init="findOne()">
-    <span>{{article.created | date:'medium'}}</span> /
-    <span>{{article.user.name}}</span>
-    <h2>{{article.title}}</h2>
-    <div data-ng-if="hasAuthorization(article)">
-        <a class="btn" href="/#!/articles/{{article._id}}/edit">
-            <i class="glyphicon glyphicon-edit"></i>
-        </a>
-        <a class="btn" data-ng-click="remove(article);">
-            <i class="glyphicon glyphicon-trash"></i>
-        </a>
-    </div>
-    <div>{{article.content}}</div>
+    <article class="col-md-8">
+        <figure class="article-avatar">
+            <img data-ng-src="{{article.avatar !== null && article.avatar || 'https://s3.amazonaws.com/uifaces/faces/twitter/sachagreif/128.jpg'}}" />
+        </figure>
+        <h2>{{article.name}}</h2>
+        <h3>{{article.occupation}}</h3>
+        <div data-ng-if="hasAuthorization(article)">
+            <a class="btn" href="/#!/articles/{{article._id}}/edit">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a class="btn" data-ng-click="remove(article);">
+                <i class="glyphicon glyphicon-trash"></i>
+            </a>
+        </div>
+    </article>
+    <aside class="article-meta">
+        <ul>
+            <li ng-repeat="(key, value) in article.meta">
+                <strong>{{value}}</strong>
+                <em>{{key}}</em>
+            </li>
+        </ul>
+    </aside>
+    <div class="client-graph">5,3,9,6,5,9,7,3,5,2</div>
 </section>
