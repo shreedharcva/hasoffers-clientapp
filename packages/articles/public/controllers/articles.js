@@ -4,10 +4,6 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
     function($scope, $stateParams, $location, $fileUploader, Global, Articles) {
         $scope.global = Global;
 
-        $scope.$watchCollection('article.graph', function () {
-
-        });
-
         $scope.hasAuthorization = function(article) {
             if (!article || !article.user) return false;
             return $scope.global.isAdmin || article.user._id === $scope.global.user._id;
