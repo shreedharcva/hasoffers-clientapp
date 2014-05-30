@@ -1,13 +1,14 @@
 'use strict';
 
-angular.module('mean').directive('clientGraph', function () {
+angular.module('mean').directive('clientGraph', function() {
     return {
-        restrict: 'A',
+        restrict: 'E',
         link: function(scope, element, attrs) {
-            element.peity('line', {
-                height: 60,
-                width: 150,
-                strokeWidth: 3
+            scope.$evalAsync(function () {
+                $(element).peity('line', {
+                    height: 70,
+                    width: 160
+                });
             });
         }
     };

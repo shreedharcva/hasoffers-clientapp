@@ -4,6 +4,10 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
     function($scope, $stateParams, $location, $fileUploader, Global, Articles) {
         $scope.global = Global;
 
+        $scope.$watchCollection('article.graph', function () {
+
+        });
+
         $scope.hasAuthorization = function(article) {
             if (!article || !article.user) return false;
             return $scope.global.isAdmin || article.user._id === $scope.global.user._id;
@@ -54,8 +58,6 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
             Articles.query(function(articles) {
                 $scope.articles = articles;
             });
-
-            $scope.renderGraph();
         };
 
         $scope.findOne = function() {
@@ -64,8 +66,6 @@ angular.module('mean').controller('ArticlesController', ['$scope', '$stateParams
             }, function(article) {
                 $scope.article = article;
             });
-
-            $scope.renderGraph();
         };
 
         // create a uploader with options
